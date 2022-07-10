@@ -1,6 +1,6 @@
 #pragma once
 
-#include "slim_windows.h"
+#include "slim_windows.hpp"
 #include <string>
 #include <cstring>
 #include <cwchar>

@@ -1,4 +1,4 @@
-#include "slim_windows.h"
+#include "slim_windows.hpp"
 
 #include <cstdio>
 #include <string>

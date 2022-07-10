@@ -15,5 +15,6 @@ fusionpath = executable(
   'fusionpath',
   files(
     'src/main.cpp',
+    'src/registry_key.cpp',
   ),
 )

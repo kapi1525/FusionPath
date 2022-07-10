@@ -2,6 +2,7 @@
 
 // disable almost everything
 #define WIN32_LEAN_AND_MEAN
+#define STRICT
 
 // disable even more things...
 #define NOGDICAPMASKS

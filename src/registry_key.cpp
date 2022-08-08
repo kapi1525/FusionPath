@@ -3,21 +3,21 @@
 
 
 
-fusionpath::registry_key::registry_key() {
+registry_key::registry_key() {
     handle = HKEY_LOCAL_MACHINE;
 }
 
-fusionpath::registry_key::registry_key(HKEY base_key) {
+registry_key::registry_key(HKEY base_key) {
     handle = base_key;
 }
 
-fusionpath::registry_key::~registry_key() {
+registry_key::~registry_key() {
     close(handle);
 }
 
 
 
-void fusionpath::registry_key::open_child_key(std::wstring key_name) {
+void registry_key::open_child_key(std::wstring key_name) {
     HKEY temp_key = nullptr;
 
     LSTATUS status = RegOpenKeyExW(
@@ -38,7 +38,7 @@ void fusionpath::registry_key::open_child_key(std::wstring key_name) {
 }
 
 
-void fusionpath::registry_key::open_child_key_path(std::wstring key_path_name) {
+void registry_key::open_child_key_path(std::wstring key_path_name) {
     wchar_t* path = _wcsdup(key_path_name.c_str());
 
     constexpr const wchar_t delim[] = L"/\\";
@@ -60,8 +60,7 @@ void fusionpath::registry_key::open_child_key_path(std::wstring key_path_name) {
 }
 
 
-
-std::wstring fusionpath::registry_key::get_value(std::wstring value) {
+std::wstring registry_key::get_value(std::wstring value) {
     LSTATUS status;
 
     // Check if value is correct type and get its size.
@@ -89,7 +88,7 @@ std::wstring fusionpath::registry_key::get_value(std::wstring value) {
 
 
     // Get actual string
-    size += 1;  // To be safe is string isnt null terminated for some reason
+    size += 1;  // To be safe if string isnt null terminated for some reason
     wchar_t* buffer = (wchar_t*)malloc(size);
 
     status = RegGetValueW(
@@ -117,13 +116,13 @@ std::wstring fusionpath::registry_key::get_value(std::wstring value) {
 
 
 // if handle is NULL registry_key is not valid
-bool fusionpath::registry_key::is_valid() {
+bool registry_key::is_valid() {
     return handle;
 }
 
 
 
-void fusionpath::registry_key::close(HKEY key) {
+void registry_key::close(HKEY key) {
     switch ((int)key) {
 
     // Ignore predefined keys (and null) as they cannot be closed

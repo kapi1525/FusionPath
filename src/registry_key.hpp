@@ -6,30 +6,22 @@
 #include <cwchar>
 
 
+class registry_key {
+public:
+    registry_key();
+    registry_key(HKEY base_key);
+    ~registry_key();
 
-namespace fusionpath {
+    void open_child_key(std::wstring key_name);
+    void open_child_key_path(std::wstring key_path_name);
+    std::wstring get_value(std::wstring value);
 
-    class registry_key {
-    public:
-        registry_key();
-        registry_key(HKEY base_key);
-        ~registry_key();
+    bool is_valid();
 
-        void open_child_key(std::wstring key_name);
-        void open_child_key_path(std::wstring key_path_name);
-        std::wstring get_value(std::wstring value);
+    constexpr static int key_access_rights = KEY_QUERY_VALUE | KEY_WOW64_32KEY;
 
-        bool is_valid();
+protected:
+    void close(HKEY key);
 
-        constexpr static int key_access_rights = KEY_QUERY_VALUE | KEY_WOW64_32KEY;
-
-    protected:
-        void close(HKEY key);
-
-        HKEY handle;
-    };
-
-}
-
-
-
+    HKEY handle;
+};

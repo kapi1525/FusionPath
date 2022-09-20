@@ -59,11 +59,11 @@ jobs:
       if: github.event_name != 'release'
       with:
         name: FusionPath
-        path: ./bin/fusionpath.exe
+        path: ./bin/FusionPath.exe
 
     - name: Upload release
       uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
-        files: './bin/fusionpath.exe'
+        files: './bin/FusionPath.exe'
         repo-token: ${{ secrets.GITHUB_TOKEN }}

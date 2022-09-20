@@ -1,5 +1,4 @@
 #include "registry_key.hpp"
-#include "debug.hpp"
 
 
 
@@ -29,7 +28,6 @@ void registry_key::open_child_key(std::wstring key_name) {
     );
 
     if(status != ERROR_SUCCESS) {
-        debug_log(L"RegOpenKeyExW failed: %d", status);
         temp_key = nullptr;
     }
 
@@ -47,7 +45,6 @@ void registry_key::open_child_key_path(std::wstring key_path_name) {
     wchar_t* token = wcstok_s(path, delim, &buffer);
 
     while (token) {
-        debug_log("Openning key %s." , token);
         open_child_key(token);
         if(!is_valid()) {
             break;
@@ -77,12 +74,10 @@ std::wstring registry_key::get_value(std::wstring value) {
     );
 
     if(status != ERROR_SUCCESS) {
-        debug_log(L"RegQueryValueExW failed: %d.", status);
         return L"";
     }
 
     if(type != REG_SZ) {
-        debug_log(L"Registry value has incorect type: %d.", type);
         return L"";
     }
 
@@ -102,7 +97,6 @@ std::wstring registry_key::get_value(std::wstring value) {
     );
 
     if(status != ERROR_SUCCESS) {
-        debug_log(L"RegGetValueW failed: %d.", status);
         free(buffer);
         return L"";
     }

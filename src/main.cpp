@@ -1,5 +1,3 @@
-#include "slim_windows.hpp"
-
 #include <cstdio>
 #include <string>
 

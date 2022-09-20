@@ -1,5 +1,5 @@
 project(
-  'fusionpath',
+  'FusionPath',
   'cpp',
   version: '0.1.0',
   default_options: [
@@ -11,8 +11,8 @@ project(
 
 
 
-fusionpath = executable(
-  'fusionpath',
+FusionPath_exe = executable(
+  'FusionPath',
   files(
     'src/main.cpp',
     'src/registry_key.cpp',
